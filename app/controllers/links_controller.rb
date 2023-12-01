@@ -1,8 +1,13 @@
 class LinksController < ApplicationController
+  before_action :set_link, only: [:show]
+
   def index
     # @links = Link.order(created_at: :desc)
     # implement as a shorcut because it is common this is comming from the model using scope
     @links = Link.recent_first
+  end
+
+  def show
   end
 
   def create
@@ -23,5 +28,9 @@ class LinksController < ApplicationController
 
   def link_params
     params.require(:link).permit(:url)
+  end
+
+  def set_link
+    @link = Link.find(params[:id])
   end
 end

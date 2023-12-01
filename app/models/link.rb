@@ -9,4 +9,8 @@ class Link < ApplicationRecord
     ShortCode.encode(id)
   end
 
+  # here also we are overwriting a inbuild metho of rails
+  def self.find(id)
+    super ShortCode.decode(id)
+  end
 end
