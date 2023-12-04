@@ -1,4 +1,7 @@
 class Link < ApplicationRecord
+  # so if we destroy the link we delete the associate views
+  has_many :views, dependent: :destroy
+
   #in order to reuse it
   scope :recent_first, -> { order(created_at: :desc)}
 
